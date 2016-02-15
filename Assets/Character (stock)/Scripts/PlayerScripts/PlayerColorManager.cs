@@ -6,6 +6,9 @@ using System.Collections;
 public class PlayerColorManager : MonoBehaviour {
 
 	public Renderer characterRenderer;
+	public Renderer swordRenderer;
+	public Light swordLight;
+
 
 	public float colorShiftRate = 1.0f;
 
@@ -17,6 +20,9 @@ public class PlayerColorManager : MonoBehaviour {
 	void Awake () {
 		currentColor = PlayerPersonality.playerColor ;
 		characterRenderer.material.SetColor("_EmissionColor",currentColor);
+		swordRenderer.material.SetColor ("_Color", Color.white - currentColor);
+		swordLight.color = Color.white - currentColor;
+
 	}
 
 	void FixedUpdate () {
@@ -43,5 +49,7 @@ public class PlayerColorManager : MonoBehaviour {
 	void SetColor(Color cc){
 		currentColor = cc;
 		characterRenderer.material.SetColor("_EmissionColor",currentColor);
+		swordRenderer.material.SetColor ("_Color", Color.white - currentColor);
+		swordLight.color = Color.white - currentColor;
 	}
 }
