@@ -9,7 +9,7 @@ public class PlayerColorManager : MonoBehaviour {
 
 	public float colorShiftRate = 1.0f;
 
-	private float incrementTimer = 1.0f;
+	private float incrementTimer = 0.1f;
 
 	private Color currentColor;
 
@@ -25,7 +25,7 @@ public class PlayerColorManager : MonoBehaviour {
 
 			//stop the increase
 			if (currentColor.Equals (PlayerPersonality.playerColor)) {
-				incrementTimer = 0.0f;
+				incrementTimer = 0.1f;
 			}
 		}
 	}
@@ -35,7 +35,7 @@ public class PlayerColorManager : MonoBehaviour {
 		//currentColor = Color.Lerp (currentColor, PlayerPersonality.playerColor, Time.deltaTime * colorShiftRate);
 		//characterRenderer.material.SetColor("_EmissionColor",currentColor);
 
-		incrementTimer *= incrementTimer;
+		incrementTimer += incrementTimer;
 		SetColor( Color.Lerp (currentColor, PlayerPersonality.playerColor, Time.deltaTime * colorShiftRate * incrementTimer) );
 	}
 		
