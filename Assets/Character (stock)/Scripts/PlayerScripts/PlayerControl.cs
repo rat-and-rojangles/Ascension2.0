@@ -47,11 +47,12 @@ public class PlayerControl : MonoBehaviour
 	private float distToGround;
 	private float sprintFactor;
 
-	//private bool particleSpray = false;
-	public ParticleSystem particleSpray;
+
+	public ParticleSystem particleComponent;
 
 	void Awake()
 	{
+
 		anim = GetComponent<Animator> ();
 		cameraTransform = Camera.main.transform;
 
@@ -98,6 +99,8 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		particleComponent.Stop ();
+
 		anim.SetBool (aimBool, IsAiming());
 		anim.SetFloat(hFloat, h);
 		anim.SetFloat(vFloat, v);
@@ -111,13 +114,13 @@ public class PlayerControl : MonoBehaviour
 
 		if(fly)
 			FlyManagement(h,v);
-
 		else
 		{
 			MovementManagement (h, v, run, sprint);
 			JumpManagement ();
 			//anim.SetBool (attackBool, attack);
 		}
+
 		anim.SetBool (attackBool, attack);
 		if (attack) {	//attack interrupts fly
 			fly = false;
@@ -131,13 +134,9 @@ public class PlayerControl : MonoBehaviour
 		Vector3 direction = Rotating(horizontal, vertical);
 		GetComponent<Rigidbody>().AddForce(direction * flySpeed * 100 * (sprint?sprintFactor:1));
 
-		if (direction.magnitude > 0.01f) {
-			//particleSpray.emission = true;
-
-
-		} else {
-			//particleSpray.emission = false;
-		}
+		if (direction.magnitude > 0.01f || jump) {
+			particleComponent.Play ();
+		} 
 
 		if (jump) {
 			GetComponent<Rigidbody>().AddForce(Vector3.up * flySpeed * 100 * (sprint?sprintFactor:1));
