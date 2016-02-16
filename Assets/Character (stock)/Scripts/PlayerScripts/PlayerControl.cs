@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
 	private float h;
 	private float v;
 	private bool jump;
+	private bool ascend;
 
 	private bool aim;
 
@@ -86,7 +87,8 @@ public class PlayerControl : MonoBehaviour
 		aim = Input.GetButton("Aim");
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
-		jump = Input.GetButton ("Jump");
+		jump = Input.GetButtonDown ("Jump");
+		ascend = Input.GetButton ("Jump");
 		run = Input.GetButton ("Run");
 		sprint = Input.GetButton ("Sprint");
 		isMoving = Mathf.Abs(h) > 0.1 || Mathf.Abs(v) > 0.1;
@@ -134,11 +136,11 @@ public class PlayerControl : MonoBehaviour
 		Vector3 direction = Rotating(horizontal, vertical);
 		GetComponent<Rigidbody>().AddForce(direction * flySpeed * 100 * (sprint?sprintFactor:1));
 
-		if (direction.magnitude > 0.01f || jump) {
+		if (direction.magnitude > 0.01f || ascend) {
 			particleComponent.Play ();
 		} 
 
-		if (jump) {
+		if (ascend) {
 			GetComponent<Rigidbody>().AddForce(Vector3.up * flySpeed * 100 * (sprint?sprintFactor:1));
 		}
 	}
@@ -150,7 +152,8 @@ public class PlayerControl : MonoBehaviour
 			anim.SetBool (jumpBool, false);
 
 		}
-		if (Input.GetButtonDown ("Jump"))
+		//if (Input.GetButtonDown ("Jump"))
+		if (jump)
 		{
 			if (IsGrounded ()) {
 				anim.SetBool (jumpBool, true);
