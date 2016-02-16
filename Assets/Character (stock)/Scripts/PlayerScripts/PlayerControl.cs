@@ -13,8 +13,6 @@ public class PlayerControl : MonoBehaviour
 	public float aimTurnSmoothing = 15.0f;
 	public float speedDampTime = 0.1f;
 
-	//public float jumpHeight = 5.0f;
-
 	
 	private float speed;
 
@@ -48,6 +46,9 @@ public class PlayerControl : MonoBehaviour
 	private bool fly = false;
 	private float distToGround;
 	private float sprintFactor;
+
+	//private bool particleSpray = false;
+	public ParticleSystem particleSpray;
 
 	void Awake()
 	{
@@ -129,6 +130,14 @@ public class PlayerControl : MonoBehaviour
 	{
 		Vector3 direction = Rotating(horizontal, vertical);
 		GetComponent<Rigidbody>().AddForce(direction * flySpeed * 100 * (sprint?sprintFactor:1));
+
+		if (direction.magnitude > 0.01f) {
+			//particleSpray.emission = true;
+
+
+		} else {
+			//particleSpray.emission = false;
+		}
 
 		if (jump) {
 			GetComponent<Rigidbody>().AddForce(Vector3.up * flySpeed * 100 * (sprint?sprintFactor:1));
