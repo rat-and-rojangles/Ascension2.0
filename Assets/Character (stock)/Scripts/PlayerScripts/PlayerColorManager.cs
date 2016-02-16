@@ -8,6 +8,7 @@ public class PlayerColorManager : MonoBehaviour {
 	public Renderer characterRenderer;
 	public Renderer swordRenderer;
 	public Light swordLight;
+	public ParticleSystem flyParticles;
 
 
 	public float colorShiftRate = 1.0f;
@@ -20,8 +21,9 @@ public class PlayerColorManager : MonoBehaviour {
 	void Awake () {
 		currentColor = PlayerPersonality.playerColor ;
 		characterRenderer.material.SetColor("_EmissionColor",currentColor);
-		swordRenderer.material.SetColor ("_Color", Color.white - currentColor);
-		swordLight.color = Color.white - currentColor;
+		swordRenderer.material.SetColor ("_Color", PlayerPersonality.playerEnergyColor);
+		swordLight.color = PlayerPersonality.playerEnergyColor;
+		flyParticles.startColor = PlayerPersonality.playerEnergyColor;
 
 	}
 
@@ -38,9 +40,6 @@ public class PlayerColorManager : MonoBehaviour {
 
 
 	void ColorShiftTemporal(){
-		//currentColor = Color.Lerp (currentColor, PlayerPersonality.playerColor, Time.deltaTime * colorShiftRate);
-		//characterRenderer.material.SetColor("_EmissionColor",currentColor);
-
 		incrementTimer += incrementTimer;
 		SetColor( Color.Lerp (currentColor, PlayerPersonality.playerColor, Time.deltaTime * colorShiftRate * incrementTimer) );
 	}
@@ -49,7 +48,9 @@ public class PlayerColorManager : MonoBehaviour {
 	void SetColor(Color cc){
 		currentColor = cc;
 		characterRenderer.material.SetColor("_EmissionColor",currentColor);
-		swordRenderer.material.SetColor ("_Color", Color.white - currentColor);
-		swordLight.color = Color.white - currentColor;
+		swordRenderer.material.SetColor ("_Color", PlayerPersonality.playerEnergyColor);
+		swordLight.color = PlayerPersonality.playerEnergyColor;
+		flyParticles.startColor = PlayerPersonality.playerEnergyColor;
+
 	}
 }
