@@ -10,14 +10,16 @@ public class PlayerPersonality : ScriptableObject {
 		get{ 
 			// 0 hue can be red, black, or white
 			if (HSVColor.FromColor (playerColor).h == 0) {
-				if (HSVColor.FromColor (playerColor).v == 0) {	//black
+				if (HSVColor.FromColor (playerColor).v == 0) {			//black
 					//return Color.red;
 					return Color.white;
 				} else if (HSVColor.FromColor (playerColor).s == 0) {	//white
 					return Color.blue;
-				} else{
+				} else {													//red
 					return Color.cyan;
 				}
+			} else if(Useful.approximatelyEqual(HSVColor.FromColor (playerColor).h, 1 - HSVColor.FromColor (playerColor).h, 0.05f)){	//cyan
+				return Color.red;		
 			} else {
 				return HSVColor.ToColor (new HSVColor (1 - HSVColor.FromColor (playerColor).h, 1.0f, 1.0f));
 			}

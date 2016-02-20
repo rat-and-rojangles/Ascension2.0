@@ -9,7 +9,7 @@ public class PauseScreenManagement : MonoBehaviour {
 	
 	// Toggle pause on escape key
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetButtonDown ("Pause")) {
 			isPaused = !isPaused;
 
 			if (isPaused) {
