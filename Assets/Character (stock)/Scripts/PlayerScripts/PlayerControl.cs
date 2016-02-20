@@ -85,8 +85,8 @@ public class PlayerControl : MonoBehaviour
 			fly = !fly;
 		}
 		aim = Input.GetButton("Aim");
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
+		h = Input.GetAxis("MoveHorizontal");
+		v = Input.GetAxis("MoveVertical");
 		jump = Input.GetButtonDown ("Jump");
 		ascend = Input.GetButton ("Jump");
 		run = Input.GetButton ("Run");

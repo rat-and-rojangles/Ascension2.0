@@ -10,16 +10,22 @@ public class ButtonController : MonoBehaviour {
 
 	private Button button;
 
+	private Button scapegoatButton;
+
 	void Awake(){
 		button = GetComponent<Button> ();
+		scapegoatButton = GameObject.FindGameObjectWithTag ("ScapegoatButton").GetComponent<Button> ();
 	}
 
 	void OnEnable () {
-		//print (GetComponent<Button> ());
 		if (selectOnStart) {
+			scapegoatButton.Select ();	//this gets it off of the actual button
 			button.Select ();
 		}
 	}
+
+
+
 		
 	/*void Update(){
 		if(Input.GetKeyDown(Input.GetButton("Submit")) ){

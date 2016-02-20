@@ -17,7 +17,7 @@ function Start(){
 function Update(){
 
 	//check if pause button (escape key) is pressed
-	if(Input.GetKeyDown("escape")){
+	if(Input.GetButtonDown("Pause")){
 	
 		//check if game is already paused		
 		if(pauseEnabled == true){
@@ -89,7 +89,7 @@ GUI.skin.button.font = pauseMenuFont;
 				QualitySettings.currentLevel = QualityLevel.Fantastic;
 			}
 			
-			if(Input.GetKeyDown("escape")){
+			if(Input.GetButtonDown("Pause")){
 				showGraphicsDropDown = false;
 			}
 		}
