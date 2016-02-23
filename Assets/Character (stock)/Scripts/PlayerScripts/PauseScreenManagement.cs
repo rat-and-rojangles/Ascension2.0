@@ -5,7 +5,7 @@ public class PauseScreenManagement : MonoBehaviour {
 
 	private bool isPaused = false;
 
-	public GameObject pauseMenu;
+	public GameObject pauseMenuCanvas;
 	
 	// Toggle pause on escape key
 	void Update () {
@@ -14,10 +14,10 @@ public class PauseScreenManagement : MonoBehaviour {
 
 			if (isPaused) {
 				Time.timeScale = 0.0f;
-				pauseMenu.SetActive (true);
+				pauseMenuCanvas.SetActive (true);
 			} else {
 				Time.timeScale = 1.0f;
-				pauseMenu.SetActive (false);
+				pauseMenuCanvas.SetActive (false);
 			}
 		}
 	}
@@ -25,12 +25,12 @@ public class PauseScreenManagement : MonoBehaviour {
 	public void Pause(){
 		isPaused = true;
 		Time.timeScale = 0.0f;
-		pauseMenu.SetActive (true);
+		pauseMenuCanvas.SetActive (true);
 	}
 
 	public void Unpause(){
 		isPaused = false;
 		Time.timeScale = 1.0f;
-		pauseMenu.SetActive (false);
+		pauseMenuCanvas.SetActive (false);
 	}
 }
