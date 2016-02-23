@@ -22,15 +22,7 @@ public class ButtonController : MonoBehaviour {
 			scapegoatButton.Select ();	//this gets it off of the actual button
 			button.Select ();
 		}
+
 	}
-
-
-
-		
-	/*void Update(){
-		if(Input.GetKeyDown(Input.GetButton("Submit")) ){
-			button.onClick.Invoke ();
-		}
-	}*/
 
 }
