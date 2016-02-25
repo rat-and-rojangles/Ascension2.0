@@ -18,6 +18,9 @@ public class ButtonController : MonoBehaviour {
 	}
 
 	void OnEnable () {
+		print (button);
+		print (scapegoatButton);
+
 		if (selectOnStart) {
 			scapegoatButton.Select ();	//this gets it off of the actual button
 			button.Select ();
